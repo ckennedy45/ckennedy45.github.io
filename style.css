@@ -1,0 +1,121 @@
+/* Page frame around the site content */
+.page-frame {
+  border: 1px solid #ddd; /* thin neutral border */
+  padding: 1rem; /* internal spacing so content isn't pressed against the frame */
+  box-sizing: border-box;
+  margin: 0.5rem; /* small outer gap from viewport edges */
+  position: relative; /* positioning context for absolutely-positioned children */
+  min-height: calc(100vh - 1rem); /* fill full viewport height minus outer margins */
+}
+
+/* Make the grid container span the full width of the frame */
+.full-width-grid { max-width: none; width: 100%; padding-left: 1rem; padding-right: 1rem; }
+
+/* Right-align About Me on large screens */
+.large-text-right { text-align: right; }
+
+/* Site title style */
+.site-title { margin: 0 0 0.5rem 0; font-size: 2rem; font-weight: 700; }
+
+/* Constrain About Me width so it doesn't stretch too wide on huge screens */
+.about-me { max-width: 36rem; margin-left: auto; }
+
+/* images used in the about/fun panels */
+.about-image {
+  display: block;
+  width: 100%;          /* be fluid within its container */
+  max-width: 18rem;     /* allow larger thumbnails on wider screens */
+  height: auto;
+  object-fit: cover;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+}
+
+/* On large screens keep images compact and align to the right inside the about panel */
+@media screen and (min-width: 64em) {
+  .about-image {
+    max-width: 18rem;    /* slightly larger on very wide screens */
+    margin-left: auto;  /* push image to the right inside the right-aligned panel */
+    margin-right: 0;
+    display: block;
+  }
+}
+
+/* On small screens keep thumbnails even smaller and centered */
+@media screen and (max-width: 40em) {
+  .about-image {
+    max-width: 90%;      /* allow the image to scale up on narrow screens */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+/* Navigation/menu styles: minimal, elegant font, subtle padding and hover underline */
+.vertical.menu {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  margin-top: 0.25rem; /* keeps menu visually close under the site title */
+}
+
+.vertical.menu li { margin: 0; }
+
+.vertical.menu li a {
+  display: inline-block;
+  padding: 0.35rem 0; /* subtle vertical padding */
+  color: #333; /* neutral, elegant text color */
+  text-decoration: none;
+  transition: color 160ms ease-in-out, text-decoration-color 160ms ease-in-out;
+}
+
+.vertical.menu li a:hover,
+.vertical.menu li a:focus {
+  color: #1e73be; /* slight color shift on hover */
+  text-decoration: underline; /* underline on hover */
+}
+
+/* On large screens position the About Me section at the bottom-right of the frame */
+@media screen and (min-width: 64em) {
+  /* place the about-me element in the lower-right corner */
+  .about-me {
+    position: fixed; /* fix to viewport so it's not clipped by ancestors */
+    right: 1rem; /* align close to viewport inner edge */
+    top: 1rem; /* align to top of viewport */
+    margin-left: 0; /* cancel flow margin */
+    text-align: right; /* keep contents right-aligned */
+    max-width: 36rem;
+    transition: transform 320ms ease, opacity 320ms ease;
+    transform: translateY(0);
+    opacity: 1;
+    z-index: 10; /* ensure it sits above other content */
+    /* allow the panel to expand to fit content on large screens */
+    max-height: none;
+    overflow: visible;
+    padding: 0.5rem; /* inner padding so text isn't flush to the edge */
+    background: #fff; /* keep text readable over page */
+  }
+
+  /* ensure the grid row does not vertically center items (left column should sit at top) */
+  .grid-x.align-justify.align-top { align-items: flex-start; }
+}
+
+/* stacked state (small screens) - About Me slides under the menu in flow */
+@media screen and (max-width: 63.999em) {
+  .about-me {
+    position: static; /* return to normal flow */
+    transform: translateY(0); /* reset transform */
+    opacity: 1;
+    transition: none;
+  }
+}
+
+/* Animated slide when toggling between states: use a helper class on the page frame */
+.page-frame.transitioning .about-me {
+  transition: transform 320ms ease, opacity 320ms ease;
+}
+
+/* When the frame has .stacked, nudge the about-me to start slightly above and then slide under */
+.page-frame.stacked .about-me {
+  transform: translateY(8px);
+  opacity: 0.98;
+}
