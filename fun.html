@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,63 +9,47 @@
     <link rel="stylesheet" href="/style.css?v=2">
 
 </head>
+
 <body>
     <div class="page-frame">
-        <div class="off-canvas-wrapper">
-            <!-- Your menu or Off-canvas content goes here -->
-            <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
-                <!-- Close button -->
-                <button class="close-button" aria-label="Close menu" type="button" data-close>
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <!-- main content: full-width single row with two responsive columns -->
+        <div class="grid-container full-width-grid">
+            <!-- single row -->
+            <div class="grid-x align-justify align-top">
+                <!-- left column: site title + vertical menu -->
+                <div class="cell small-12 large-4">
+                    <h1 class="site-title">Caiden Kennedy</h1>
+                    <ul class="vertical menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="fun.html">Fun Stuff</a></li>
+                    </ul>
+                </div>
 
-                <!-- Menu -->
-                <ul class="vertical menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="fun.html">Fun Stuff</a></li>
-                </ul>
-            </div>
+                <!-- right column: Fun content. -->
+                <div class="cell small-12 large-4 large-text-right">
+                    <section class="about-me">
+                        <h2>Fun Stuff</h2>
+                        <h3>WELLER</h3>
+                        <p>This is my dog weller, we got him during covid and he is my bestfriend. I love talking walks
+                            with him and playing tug of war.</p>
+                        <img src="../dog.PNG" alt="Dog" class="about-image">
 
-            <!-- Your page content lives here -->
-            <div class="off-canvas-content" data-off-canvas-content>
-                <!-- main content: full-width single row with two responsive columns -->
-                <div class="grid-container full-width-grid">
-                    <!-- single row -->
-                    <div class="grid-x align-justify align-top">
-                        <!-- left column: site title + vertical menu -->
-                        <div class="cell small-12 large-4">
-                            <h1 class="site-title">Caiden Kennedy</h1>
-                            <ul class="vertical menu">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="resume.html">Resume</a></li>
-                                <li><a href="projects.html">Projects</a></li>
-                                <li><a href="fun.html">Fun Stuff</a></li>
-                            </ul>
-                        </div>
+                        <h3>Lifting</h3>
+                        <p>Lifting and going to the gym is a huge part of my life, me, my bother and cousin have all
+                            been lifting together for years and it has brought us very close.</p>
+                        <img src="../gym.PNG" alt="Gym / lifting" class="about-image">
 
-                        <!-- right column: Fun content. On large screens this will be flushed to the bottom-right; on small screens it stacks underneath the menu. -->
-                        <div class="cell small-12 large-4 large-text-right">
-                            <section class="about-me">
-                                <h2>Fun Stuff</h2>
-                                <h3>WELLER</h3>
-                                <p>This is my dog weller, we got him during covid and he is my bestfriend. I love talking walks with him and playing tug of war.</p>
-                                <img src="../dog.PNG" alt="Dog" class="about-image">
-
-                                <h3>Lifting</h3>
-                                <p>Lifting and going to the gym is a huge part of my life, me, my bother and cousin have all been lifting together for years and it has brought us very close.</p>
-                                <img src="../gym.PNG" alt="Gym / lifting" class="about-image">
-
-                                <h3>Wakesurfing</h3>
-                                <p>Me and all of my friends love to wake surf in the summer and learn to tricks</p>
-                                <img src="../surf.PNG" alt="Wakesurfing" class="about-image">
-                            </section>
-                        </div>
-                    </div>
+                        <h3>Wakesurfing</h3>
+                        <p>Me and all of my friends love to wake surf in the summer and learn to tricks</p>
+                        <img src="../surf.PNG" alt="Wakesurfing" class="about-image">
+                    </section>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
     <!-- include before closing <body> tag -->
@@ -76,34 +61,29 @@
     </script>
     <script>
         // Toggle stacked state on the page-frame when below/above the large breakpoint
-        (function(){
+        (function () {
             var frame = document.querySelector('.page-frame');
-            if(!frame) return;
+            if (!frame) return;
 
             var mq = window.matchMedia('(min-width: 64em)');
 
-            function applyState(e){
-                // Add transitioning class briefly to enable CSS transition
+            function applyState(e) {
                 frame.classList.add('transitioning');
-                if(mq.matches){
+                if (mq.matches) {
                     // large screens: not stacked
                     frame.classList.remove('stacked');
                 } else {
                     // small screens: stacked under menu
                     frame.classList.add('stacked');
                 }
-                // remove transitioning after animation duration
-                setTimeout(function(){ frame.classList.remove('transitioning'); }, 350);
+                setTimeout(function () { frame.classList.remove('transitioning'); }, 350);
             }
 
-            // initial state
             applyState();
-            // listen for changes
-            if(typeof mq.addEventListener === 'function') mq.addEventListener('change', applyState);
-            else if(typeof mq.addListener === 'function') mq.addListener(applyState);
+            if (typeof mq.addEventListener === 'function') mq.addEventListener('change', applyState);
+            else if (typeof mq.addListener === 'function') mq.addListener(applyState);
         })();
     </script>
 </body>
+
 </html>
-
-

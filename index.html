@@ -1,58 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Foundation Intro</title>
-	<link rel="stylesheet" href="/foundation.min.css?v=2">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation Intro</title>
+    <link rel="stylesheet" href="/foundation.min.css?v=2">
     <link rel="stylesheet" href="/style.css?v=2">
 
 </head>
+
 <body>
     <div class="page-frame">
-        <div class="off-canvas-wrapper">
-        <!-- Your menu or Off-canvas content goes here -->
-        <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
-            <!-- Close button -->
-            <button class="close-button" aria-label="Close menu" type="button" data-close>
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <!-- main content: full-width single row with two responsive columns -->
+        <div class="grid-container full-width-grid">
+            <!-- single row -->
+            <div class="grid-x align-justify align-top">
+                <!-- left column: site title + vertical menu -->
+                <div class="cell small-12 large-4">
+                    <h1 class="site-title">Caiden Kennedy</h1>
+                    <ul class="vertical menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="fun.html">Fun Stuff</a></li>
+                    </ul>
+                </div>
 
-            <!-- Menu -->
-            <ul class="vertical menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="fun.html">Fun Stuff</a></li>
-            </ul>
-        </div>
-        <!-- Your page content lives here -->
-        <div class="off-canvas-content" data-off-canvas-content>
-            <!-- main content: full-width single row with two responsive columns -->
-            <div class="grid-container full-width-grid">
-                <!-- single row -->
-                <div class="grid-x align-justify align-top">
-                    <!-- left column: site title + vertical menu -->
-                    <div class="cell small-12 large-4">
-                        <h1 class="site-title">Caiden Kennedy</h1>
-                        <ul class="vertical menu">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="resume.html">Resume</a></li>
-                            <li><a href="projects.html">Projects</a></li>
-                            <li><a href="fun.html">Fun Stuff</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- right column: About Me. On large screens this will be flushed to the right; on small screens it stacks underneath the menu. -->
-                    <div class="cell small-12 large-4 large-text-right">
-                        <section class="about-me">
-                            <h2>About Me</h2>
-                            <p>Hi — I’m Caiden—CS student in Minneapolis who enjoys turning ideas into simple, working software. I’m drawn to roles where I can build and communicate, like sales engineering; recent work spans a development internship and hands-on, customer-facing roles. I am looking to get in to software engineering or pre sales roles</p>
-                        </section>
-                    </div>
+                <!-- right column: About Me. -->
+                <div class="cell small-12 large-4 large-text-right">
+                    <section class="about-me">
+                        <h2>About Me</h2>
+                        <p>Hi — I’m Caiden—CS student in Minneapolis who enjoys turning ideas into simple, working
+                            software. I’m drawn to roles where I can build and communicate, like sales engineering;
+                            recent work spans a development internship and hands-on, customer-facing roles. I am looking
+                            to get in to software engineering or pre sales roles</p>
+                    </section>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- include before closing <body> tag -->
@@ -64,31 +51,31 @@
     </script>
     <script>
         // Toggle stacked state on the page-frame when below/above the large breakpoint
-        (function(){
+        (function () {
             var frame = document.querySelector('.page-frame');
-            if(!frame) return;
+            if (!frame) return;
 
             var mq = window.matchMedia('(min-width: 64em)');
 
-            function applyState(e){
-                // Add transitioning class briefly to enable CSS transition
+            function applyState(e) {
                 frame.classList.add('transitioning');
-                if(mq.matches){
+                if (mq.matches) {
                     // large screens: not stacked
                     frame.classList.remove('stacked');
                 } else {
                     // small screens: stacked under menu
                     frame.classList.add('stacked');
                 }
-                setTimeout(function(){ frame.classList.remove('transitioning'); }, 350);
+                setTimeout(function () { frame.classList.remove('transitioning'); }, 350);
             }
 
             // initial state
             applyState();
             // listen for changes
-            if(typeof mq.addEventListener === 'function') mq.addEventListener('change', applyState);
-            else if(typeof mq.addListener === 'function') mq.addListener(applyState);
+            if (typeof mq.addEventListener === 'function') mq.addEventListener('change', applyState);
+            else if (typeof mq.addListener === 'function') mq.addListener(applyState);
         })();
     </script>
 </body>
+
 </html>

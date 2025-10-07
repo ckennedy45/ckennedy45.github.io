@@ -20,11 +20,10 @@
 /* Constrain About Me width so it doesn't stretch too wide on huge screens */
 .about-me { max-width: 36rem; margin-left: auto; }
 
-/* images used in the about/fun panels */
 .about-image {
   display: block;
-  width: 100%;          /* be fluid within its container */
-  max-width: 18rem;     /* allow larger thumbnails on wider screens */
+  width: 100%;          
+  max-width: 18rem;     
   height: auto;
   object-fit: cover;
   margin-top: 0.5rem;
@@ -34,8 +33,8 @@
 /* On large screens keep images compact and align to the right inside the about panel */
 @media screen and (min-width: 64em) {
   .about-image {
-    max-width: 18rem;    /* slightly larger on very wide screens */
-    margin-left: auto;  /* push image to the right inside the right-aligned panel */
+    max-width: 18rem;    
+    margin-left: auto;  
     margin-right: 0;
     display: block;
   }
@@ -44,77 +43,73 @@
 /* On small screens keep thumbnails even smaller and centered */
 @media screen and (max-width: 40em) {
   .about-image {
-    max-width: 90%;      /* allow the image to scale up on narrow screens */
+    max-width: 90%;      
     margin-left: auto;
     margin-right: auto;
     display: block;
   }
 }
 
-/* Navigation/menu styles: minimal, elegant font, subtle padding and hover underline */
+
 .vertical.menu {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
-  margin-top: 0.25rem; /* keeps menu visually close under the site title */
+  margin-top: 0.25rem; 
 }
 
 .vertical.menu li { margin: 0; }
 
 .vertical.menu li a {
   display: inline-block;
-  padding: 0.35rem 0; /* subtle vertical padding */
-  color: #333; /* neutral, elegant text color */
+  padding: 0.35rem 0; 
+  color: #333; 
   text-decoration: none;
   transition: color 160ms ease-in-out, text-decoration-color 160ms ease-in-out;
 }
 
 .vertical.menu li a:hover,
 .vertical.menu li a:focus {
-  color: #1e73be; /* slight color shift on hover */
-  text-decoration: underline; /* underline on hover */
+  color: #1e73be; 
+  text-decoration: underline; 
 }
 
 /* On large screens position the About Me section at the bottom-right of the frame */
 @media screen and (min-width: 64em) {
-  /* place the about-me element in the lower-right corner */
   .about-me {
-    position: fixed; /* fix to viewport so it's not clipped by ancestors */
-    right: 1rem; /* align close to viewport inner edge */
-    top: 1rem; /* align to top of viewport */
-    margin-left: 0; /* cancel flow margin */
-    text-align: right; /* keep contents right-aligned */
+    position: fixed; 
+    right: 1rem; 
+    top: 1rem; 
+    margin-left: 0; 
+    text-align: right; 
     max-width: 36rem;
     transition: transform 320ms ease, opacity 320ms ease;
     transform: translateY(0);
     opacity: 1;
-    z-index: 10; /* ensure it sits above other content */
+    z-index: 10; 
     /* allow the panel to expand to fit content on large screens */
     max-height: none;
     overflow: visible;
-    padding: 0.5rem; /* inner padding so text isn't flush to the edge */
-    background: #fff; /* keep text readable over page */
+    padding: 0.5rem; 
+    background: #fff; 
   }
 
-  /* ensure the grid row does not vertically center items (left column should sit at top) */
   .grid-x.align-justify.align-top { align-items: flex-start; }
 }
 
 /* stacked state (small screens) - About Me slides under the menu in flow */
 @media screen and (max-width: 63.999em) {
   .about-me {
-    position: static; /* return to normal flow */
-    transform: translateY(0); /* reset transform */
+    position: static; 
+    transform: translateY(0); 
     opacity: 1;
     transition: none;
   }
 }
 
-/* Animated slide when toggling between states: use a helper class on the page frame */
 .page-frame.transitioning .about-me {
   transition: transform 320ms ease, opacity 320ms ease;
 }
 
-/* When the frame has .stacked, nudge the about-me to start slightly above and then slide under */
 .page-frame.stacked .about-me {
   transform: translateY(8px);
   opacity: 0.98;
